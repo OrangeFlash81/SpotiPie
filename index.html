@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/theme.css">
+
+    <title>SpotiPie - Break down who's in your playlists</title>
+</head>
+<body>
+    <div id="container">
+        <div id="logo">
+            <img src="img/logo.png" height=100>
+        </div>
+
+        <div id="options-panel">
+            <div class="panel-content">
+                <p>Step 1: Connect your Spotify account</p>
+                <a href="https://accounts.spotify.com/authorize/?client_id=6687f3eed33146da84aa50ebe3eca184&scope=user-library-read+playlist-read-private&redirect_uri=http://localhost:8000/callback/&response_type=token">
+                    <button id="connect-button">Connect to Spotify</button>
+                </a>
+                <div class="spacer"></div>
+                <p>Step 2: Pick your library or a playlist</p>
+
+                <div id="playlists-container">
+                    <select id="playlists"></select>
+                </div>
+            </div>
+        </div>
+
+        <div id="results-panel">
+            <div class="panel-content">
+                <div id="pie-chart"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src='https://www.gstatic.com/charts/loader.js'></script> 
+    <script src="js/spotify.js"></script>
+    <script src="js/doc.js"></script>
+
+    <script>        
+        populatePlaylistSelector();
+
+        hasAuthenticated().then(hasAuth => {
+            if (hasAuth) {
+                $("#connect-button")
+                    .attr("disabled", "true")
+                    .text("Connected to Spotify");
+
+                chartInit().then(() => {
+                    console.log("Charting ready")
+                    $("#playlists").change(refreshChart);
+
+                    refreshChart();
+                });    
+            }    
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+* {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+}
+
+html, body, #container {
+    background-color: #181818;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+@media (min-width: 750px) {
+    html, body, #container {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        grid-template-columns: 1fr 2fr;
+    }
+}
+
+#options-panel, #results-panel {
+    margin: 20px;
+}
+
+#results-panel .panel-content, #pie-chart {
+    height: 95%;
+}
+
+.panel-content {
+    background-color: #333333;
+    padding: 20px;
+}
+
+.spacer {
+    padding: 15px;
+}
+
+.panel-content button, .panel-content select {
+    width: 100%;
+    border: 2px solid #1DB954;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10000000px;
+    background-color: transparent;
+    text-align: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    transition: all 0.3s linear;
+}
+
+.panel-content button:hover:enabled, .panel-content select:hover:enabled {
+    background-color: #1DB954;
+    color: black;
+}
+
+.panel-content button:disabled {
+    cursor: default;
+    color: grey;
+
+    transition: none;
+}
+
+.panel-content select option {
+    /* Otherwise overriden to green on hover */
+    background-color: white !important; 
+}
+
+#playlists-container {
+    position: relative;
+}
+
+#playlists-container:after {
+    font-weight: bold;
+    color: #1DB954;
+    content: ">";
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+
+    right: 15px;
+    top: 11px;
+    position: absolute;
+}
+
+#logo {
+    grid-column: 1 / span 2;
+    color: white;
+}
