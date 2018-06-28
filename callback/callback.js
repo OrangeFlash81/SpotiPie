@@ -10,5 +10,5 @@ function handleSpotifyCallback() {
         date.toUTCString() + ";path=/";
 
     // Redirect to homepage
-    document.location.href = "/"
+    document.location.href = "/SpotiPie/"
 }
